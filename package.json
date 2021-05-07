@@ -8,6 +8,7 @@
     "dev": "clear && ts-node-dev --ignore-watch node_modules src/index.ts",
     "knex:migrate-dev": "knex --knexfile knexfile.ts migrate:latest",
     "knex:migrate": "knex --knexfile dist/knexfile.js migrate:latest",
+    "tsc":"tsc",
     "start": "node dist/src/index.js"
   },
   "keywords": [],
