@@ -7,6 +7,7 @@ export default class ClienteController{
 	async show(_:any,response:Response){
 		try {
 			let clientes = await getAllCliente();
+			console.log(clientes);
 			return response.status(200).json(clientes);
 		} catch (error) {
 			return response.status(500).json({
