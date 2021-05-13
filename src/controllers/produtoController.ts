@@ -10,8 +10,9 @@ export default class ProdutoController{
 			let produtos = await getAllProduto();
 			return response.status(200).json(produtos);
 		} catch (error) {
+			console.log(error);
 			return response.status(500).json({
-				erro:error
+				erro:String(error)
 			})			
 		}
 	}
@@ -28,7 +29,7 @@ export default class ProdutoController{
 		} catch (error) {
 			console.log(error);
 			return response.status(500).json({
-				erro:error
+				erro:String(error)
 			})
 		}
 	}
@@ -37,7 +38,10 @@ export default class ProdutoController{
 		try {
 			let produto:Produto = request.body.produto;
 			let estoque:Estoque = request.body.estoque;
-			if(produto.idProduto){
+
+			let data = await getByIdProduto(Number(produto.idProduto))
+
+			if(data){
 				await updateProduto(produto,estoque);
 				return response.status(200).json({
 					message:"Produto atualizado"
@@ -49,7 +53,7 @@ export default class ProdutoController{
 			}	
 		} catch (error) {
 			return response.status(500).json({
-				erro:error
+				erro:String(error)
 			})
 		}
 	}
@@ -70,7 +74,7 @@ export default class ProdutoController{
 			}
 		} catch (error) {
 			return response.status(500).json({
-				erro:error
+				erro:String(error)
 			})
 		}
 	}

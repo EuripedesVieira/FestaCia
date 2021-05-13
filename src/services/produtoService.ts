@@ -43,7 +43,7 @@ async function updateProduto(produto:Produto,estoque:Estoque) {
 			.update(estoque);
 
 		await trx(tables.PRODUTOS)
-			.where(tables.references.idProduto)
+			.where(tables.references.idProduto,produto.idProduto)
 			.update(produto);
 
 		trx.commit();
@@ -57,9 +57,9 @@ async function getAllProduto() {
 	try {
 		let trx = await connection.transaction();
 		let data = await trx(tables.PRODUTOS).select('*');
-		
-		let produtoEstoque = Promise.all(
+		let produtoEstoque = await Promise.all(
 			data.map(async(produto:Produto)=>{
+				console.log(produto);
 				let dataEstoque = await trx(tables.ESTOQUE)
 					.where(tables.references.idProduto,produto.idProduto)
 					.select('*');
