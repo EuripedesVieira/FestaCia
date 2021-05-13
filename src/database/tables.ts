@@ -1,5 +1,11 @@
 export default {
 	CLIENTES:'Clientes',
 	ESTOQUE:'Estoque',
-	PRODUTOS:'Produtos'
+	PRODUTOS:'Produtos',
+
+	references:{
+		idProduto:'idProduto',
+		idEstoque:'idEstoque',
+		idCliente:'idCliente'
+	}
 }
