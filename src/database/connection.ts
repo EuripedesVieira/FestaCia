@@ -1,3 +1,4 @@
+/*
 import knex from 'knex';
 
 const connection = knex({
@@ -12,9 +13,9 @@ const connection = knex({
 );
 
 export default connection;
+*/
 
 
-/*
 import knex from 'knex';
 import path from 'path';
 
@@ -26,6 +27,3 @@ const connection = knex({
 	useNullAsDefault:true
 });
 export default connection;
-
-
-*/ 
