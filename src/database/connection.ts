@@ -17,13 +17,12 @@ export default connection;
 
 
 import knex from 'knex';
-import path from 'path';
+import dev from '../../sql-dev';
 
 const connection = knex({
-	client: 'sqlite3',
-	connection:{
-		filename: path.resolve(__dirname, 'database.sqlite')
-	},
+	client:'pg',
+	debug:true,
+	connection:dev,
 	useNullAsDefault:true
 });
 export default connection;

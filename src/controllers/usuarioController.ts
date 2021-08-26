@@ -83,19 +83,19 @@ export default class UsuarioController{
 	async login(request:Request, response:Response){
 		try {
 			let pin:number = request.body.pin;
-
-			let data = await getByPIN(pin);
-			if(data){
-				return response.status(200).json({
-					message:"Login realizado com sucesso",
-					login:true
-				});
-			}else{
-				return response.status(400).json({
-					message:"Login não realizado",
-					login:false
-				});
+			if(pin){
+				let data = await getByPIN(pin);
+				if(data){
+					return response.status(200).json({
+						message:"Login realizado com sucesso",
+						login:true
+					});
+				}
 			}
+			return response.status(400).json({
+				message:"Login não realizado",
+				login:false
+			});
 		} catch (error) {
 			return response.status(500).json({
 				erro:String(error)

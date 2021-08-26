@@ -21,6 +21,7 @@ export default class ProdutoController{
 		try {
 			let produto:Produto = request.body.produto;
 			let estoque:Estoque = request.body.estoque;
+			estoque.quantidadeDisponivel=estoque.quantidadeTotal;
 			await createProduto(produto,estoque);
 			return response.status(200).json({
 				message:"Produto cadastrado com sucesso"

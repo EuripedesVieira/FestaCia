@@ -1,6 +1,7 @@
 import {Request,Response} from 'express';
 import Cliente from '../interfaces/cliente';
 import {getAllCliente,createCliente,getByCpf,getById,deleteCliente,updadeCliente} from '../services/clienteService';
+import { isCPF } from '../services/validateCPF';
 
 export default class ClienteController{
 	
@@ -26,10 +27,17 @@ export default class ClienteController{
 				});
 
 			}else{
-				await createCliente(cliente);
-				return response.status(200).json({
-					message:"Cliente cadastrado com sucesso"
-				});
+				let valid = isCPF(cliente.cpf);
+				if(valid){
+					await createCliente(cliente);
+					return response.status(200).json({
+						message:"Cliente cadastrado com sucesso"
+					});
+				}else{
+					return response.status(200).json({
+						message:"CPF invalido"
+					});
+				}
 			}
 		} catch (error) {
 			console.log(error);

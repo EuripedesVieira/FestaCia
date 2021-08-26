@@ -41,7 +41,8 @@ export async function getByPIN(pin:number) {
 		let trx = await connection.transaction();
 		let data = await trx(tables.USUARIOS).where('pin',pin).select('*');
 		trx.commit();
-		return data[0];
+		if(data.length>=1)return data[0];
+		else return null;
 	} catch (error) {
 		console.log(error);
 		return error;
